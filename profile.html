@@ -25,6 +25,8 @@
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <!-- style -->
+  <link rel="stylesheet" href="dist/css/style.css">
  
 
 </head>
@@ -47,45 +49,14 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.html" class="nav-link">Queueing Section</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="form.html" class="nav-link">Online Payment</a>
+        <a href="index.html" class="nav-link">Profile Information</a>
       </li>
     </ul>
     <!-- Left navbar links -->
     
 <!-- =========================================================== -->
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">      
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
-      
+    <ul class="navbar-nav ml-auto">       
       <li class="nav-item">
         <a class="nav-link"   href="#" role="button">
           Logout <i class="fas fa-user"></i>
@@ -96,11 +67,11 @@
   <!-- /.navbar -->
 <!-- =========================================================== -->
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-blue elevation-4">
+  <aside class="main-sidebar sidebar-color sidebar-dark-blue elevation-4">
 
     <!-- Brand Logo -->
-    <a href="bg.html" class="brand-link">
-      <img src="C:\Users\63946\Desktop\System_Capstone Project\logo.png" alt="CSPC" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="index.html" class="brand-link">
+      <img src="dist/img/logo.png" alt="CSPC" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">C S P C </span> 
     </a>
 
@@ -297,7 +268,7 @@ input[type=submit] {
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="C:\Users\63946\Desktop\System_Capstone Project\pic.png"
+                       src="dist/img/user2-160x160.jpg"
                        alt="User profile picture">
                 </div>
 
@@ -321,7 +292,7 @@ input[type=submit] {
                 <strong><i class="fas fa-book mr-1"></i> Course</strong>
 
                 <p class="text-muted">
-                  B.S. in Computer Science in Information Technology
+                 B.S. in Information Technology
                 </p>
 
                 <hr>
@@ -372,16 +343,16 @@ input[type=submit] {
                   <div class="tab-pane" id="settings">
                     <form class="form-horizontal">
                       <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputName" placeholder="Name">
-                        </div>
+                        <label for="inputName" class="col-sm-2 col-form-label">Name        </label>
+                        <label for="inputName" class="col-sm-10 col-form-label">Alexander Pierce</label>
                       </div>
                       <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">School Id</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" placeholder="0000000">
-                        </div>
+                        <label for="inputName" class="col-sm-2 col-form-label">School ID   </label>
+                        <label for="inputName" class="col-sm-10 col-form-label">1234567</label>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label">Course </label>
+                        <label for="inputName" class="col-sm-10 col-form-label">BSIT</label>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Email <Address></Address></label>
@@ -401,18 +372,10 @@ input[type=submit] {
                           <input type="text" class="form-control" id="inputSkills" placeholder="+693">
                         </div>
                       </div>
+                      
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Submit</button>
+                          <button type="submit" class="btn btn-danger">Update Profile</button>
                         </div>
                       </div>
                     </form>

@@ -25,6 +25,8 @@
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <!-- style -->
+  <link rel="stylesheet" href="dist/css/style.css">
  
 
 </head>
@@ -47,41 +49,11 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="index.html" class="nav-link">Queueing Section</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="form.html" class="nav-link">Online Payment</a>
-      </li>
     </ul>
 <!-- =========================================================== -->
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">      
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
-      
+      <!-- Notifications Dropdown Menu -->    
       <li class="nav-item">
         <a class="nav-link"   href="#" role="button">
           Logout <i class="fas fa-user"></i>
@@ -92,15 +64,13 @@
   <!-- /.navbar -->
 <!-- =========================================================== -->
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-blue elevation-4">
+  <aside class="main-sidebar sidebar-color sidebar-dark-blue elevation-4">
 
     <!-- Brand Logo -->
-    <a href="bg.html" class="brand-link">
-      <img src="C:\Users\63946\Desktop\System_Capstone Project\logo.png" alt="CSPC" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="index.html" class="brand-link">
+      <img src="dist/img/logo.png" alt="CSPC" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">C S P C </span> 
     </a>
-
-
     <!-- Sidebar UserName -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
@@ -127,13 +97,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="index.html" class="nav-link ">
+              <a href="GetQueueNumber.html" class="nav-link ">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Get Queueing Number</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="check.queu.html" class="nav-link">
+              <a href="index.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Check Queue Position</p>
               </a>
@@ -197,9 +167,14 @@
         <div class="small-box bg-info">
           <div class="inner">
             <h1>REGISTRAR</h1>
+            <center>
+              <h1 class="queue-number">122</h1>
+              <br>
+              <p> Please standby for the next transaction number</p>
+            </center> 
           </div>
           <a href="get.html" class="small-box-footer">
-            get queu number
+            Get Queue Number
             <i class="fas fa-arrow-circle-right"></i>
           </a>
         </div>
@@ -210,9 +185,14 @@
         <div class="small-box bg-success">
           <div class="inner">
             <h1>CASHIER</h1>
+            <center>
+          <h1 class="queue-number">122</h1>
+          <br>
+          <p> Please standby for the next transaction number</p>
+          </center>
           </div>
           <a href="get.html" class="small-box-footer">
-           get queu number
+         Get Queue Number
             <i class="fas fa-arrow-circle-right"></i>
           </a>
         </div>
@@ -223,9 +203,14 @@
         <div class="small-box bg-warning">
         <div class="inner">
           <h1>ACCOUNTING</h1>
+          <center>
+          <h1 class="queue-number">122</h1>
+          <br>
+          <p> Please standby for the next transaction number</p>
+          </center>
         </div>
         <a href="#" class="small-box-footer">
-          get queu number
+         Get Queue Number
             <i class="fas fa-arrow-circle-right"></i>
           </a>
         </div>
@@ -236,9 +221,14 @@
         <div class="small-box bg-danger">
           <div class="inner">
             <h1>ADMISSION</h1>
+            <center>
+            <h1 class="queue-number">122</h1>
+            <br>
+            <p> Please standby for the next transaction number</p>
+            </center>
           </div>
           <a href="#" class="small-box-footer">
-            get queu number
+             Get Queue Number
             <i class="fas fa-arrow-circle-right"></i>
           </a>
         </div>
