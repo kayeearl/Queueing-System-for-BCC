@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Get Queue number</title>
+  <title>form for Payment</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -28,10 +28,12 @@
  
 
 </head>
-</html>
+
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
+
   
+
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
@@ -100,7 +102,6 @@
       <span class="brand-text font-weight-light">C S P C </span> 
     </a>
 
-
     <!-- Sidebar UserName -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
@@ -167,6 +168,8 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+
+
 <!-- Start Your Code Here -->
 <!-- =========================================================== -->
    <!-- Main content -->
@@ -179,7 +182,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Queue Number Inline</h1>
+            <h1>Online Payment Profile</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -188,74 +191,163 @@
 
 <!-- Main content -->
 
-<section class="content">
-    <!-- =========================================================== -->
-    <!-- Office Queueing Number(Stat card) -->
-    <div class="row">
-      <div class="col-lg-6 col-6">
-        <!-- small card -->
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h1>REGISTRAR</h1>
-          </div>
-          <a href="get.html" class="small-box-footer">
-            get queu number
-            <i class="fas fa-arrow-circle-right"></i>
-          </a>
-        </div>
-      </div>
-      <!-- ./col -->
-      <div class="col-lg-6 col-6">
-        <!-- small card -->
-        <div class="small-box bg-success">
-          <div class="inner">
-            <h1>CASHIER</h1>
-          </div>
-          <a href="get.html" class="small-box-footer">
-           get queu number
-            <i class="fas fa-arrow-circle-right"></i>
-          </a>
-        </div>
-      </div>
-      <!-- ./col -->
-      <div class="col-lg-6 col-6">
-        <!-- small card -->
-        <div class="small-box bg-warning">
-        <div class="inner">
-          <h1>ACCOUNTING</h1>
-        </div>
-        <a href="#" class="small-box-footer">
-          get queu number
-            <i class="fas fa-arrow-circle-right"></i>
-          </a>
-        </div>
-      </div>
-      <!-- ./col -->
-      <div class="col-lg-6 col-6">
-        <!-- small card -->
-        <div class="small-box bg-danger">
-          <div class="inner">
-            <h1>ADMISSION</h1>
-          </div>
-          <a href="#" class="small-box-footer">
-            get queu number
-            <i class="fas fa-arrow-circle-right"></i>
-          </a>
-        </div>
-      </div>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.container {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+input[type=submit] {
+  width: 100%;
+  background-color: #0704aa;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+</style>
+</head>
+<body>
+
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      <form action="/action_page.php">
       
-      </div>
-      <!-- ./col -->
+        <div class="row">
+          <div class="col-50">
+            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+            <input type="text" id="email" name="email" placeholder="john@example.com">
+            <label for="adr"><i class="fa fa-address-card-o"></i>  Student ID</label>
+            <input type="text" id="adr" name="address" placeholder="1600493">
+            <div>
+             <label for="year">Year and Section</label>
+              <input type="text" id="year" name="year" placeholder="">
+             </div>
+              <div>
+             <label for="expyear">Contact Number</label>
+              <input type="text" id="year" name="year" placeholder="+639">
+             </div>
+
+
+             <div>
+              <label for="year">What Documents needed/Purpose of the Transaction</label>
+            <input type="text" id="adr" name="address" placeholder="COE">
+                <input type="text" id="adr" name="address" placeholder="Quantity">
+                </select>
+                </div>
+                <div>
+                  <a href="Payment.html" rel="noopener" target="_blank" class="btn btn-default"><i class=""></i> SUBMIT</a>
     </div>
-    <!-- /.row -->
-    <!-- =========================================================== -->
-      </div>
-      <!-- /.col -->    
-    <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <!-- Your Code End Here -->
-
+  
 
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
