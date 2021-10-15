@@ -14,6 +14,7 @@ if (isset($_SESSION["Stud_Id"])) {
     $profile_pic = $row2['profile_pic'];
 
     $fullname = ucfirst($db_firstname) . " " . ucfirst($db_last_name);
+    $result = mysqli_query($connections, "SELECT * FROM cashier_transaction Where Stud_Id = $user_id");
 } else {
     echo "<script>window.location.href = 'login.php';</script>";
 }
@@ -56,6 +57,7 @@ if (isset($_SESSION["Stud_Id"])) {
                 </section>
 
                 <!--Main content =========================================================== -->
+
                 <section class="content">
                     <div class="row">
                         <div class="col-12">
@@ -72,14 +74,14 @@ if (isset($_SESSION["Stud_Id"])) {
                                             <div class="d-flex justify-content-start align-items-center">
                                                 <p class="fa fa-long-arrow-down"></p>
                                                 <p class="text mx-3">Current Balance</p>
-                                                <p class="ml-4 money">Php.2578.00</p>
+                                                <p class="ml-4 money">Php 0.00</p>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="d-flex justify-content-md-end align-items-center">
                                                 <div class="fa fa-long-arrow-up"></div>
                                                 <div class="text mx-3">Payment</div>
-                                                <div class="ml-4 money"> Php.150.00</div>
+                                                <div class="ml-4 money"> Php 0.00</div>
                                             </div>
                                         </div>
                                     </div>
@@ -91,64 +93,46 @@ if (isset($_SESSION["Stud_Id"])) {
                                     <div class="table-responsive mt-3">
                                         <table class="table table-dark table-borderless">
                                             <thead>
-                                                <tr>
-                                                    <th scope="col">Activity</th>
-                                                    <th scope="col">Mode</th>
-                                                    <th scope="col">Date</th>
-                                                    <th scope="col" class="text-right">Amount</th>
-                                                </tr>
+                                                <th>
+                                                    <td scope="col">Certification</td>
+                                                    <td scope="col">Transaction Number</td>
+                                                    <td scope="col">Total Amount</td>
+                                                    <td scope="col">Date</td>
+
+                                                </th>
                                             </thead>
                                             <tbody>
+                                                <?php
+                                                if (mysqli_num_rows($result) > 0) {
+                                                ?>
+                                                        <?php
+                                                        $i = 0;
+                                                        while ($row = mysqli_fetch_array($result)) {
+                                                        ?>
+                                                            <tr>
+                                                                <td > </td>
+                                                                <td > <?php echo $row["purpose"]; ?></td>
+                                                                <td > <?php echo $row["Trans_No"]; ?></td>
+                                                                
+                                                                <td > <?php echo $row["total_amount"]; ?></td>
+                                                                <td > <?php echo $row["date"]; ?></td>
+                                                               
+                                                              
+                                                            </tr>
 
-                                                <tr>
-                                                    <td scope="row"> <span class="fa fa-exchange mr-1"></span> Certificate of Enrollment </td>
-                                                    <td><span class="fa fa-cc-visa"></span></td>
-                                                    <td class="text-muted">8 Jul 2020, 8:30 PM</td>
-                                                    <td class="d-flex justify-content-end align-items-center"> <span class="fa fa-long-arrow-down mr-1"></span> Php.150.00 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td scope="row"> <span class="fa fa-exchange mr-1"></span> Certificate of Grades </td>
-                                                    <td><span class="fa fa-cc-visa"></span></td>
-                                                    <td class="text-muted">9 Jul 2020, 8:30 PM</td>
-                                                    <td class="d-flex justify-content-end align-items-center"> <span class="fa fa-long-arrow-down mr-1"></span> Php.150.00 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td scope="row"> <span class="fa fa-exchange mr-1"></span> Certificate of Grades </td>
-                                                    <td><span class="fa fa-cc-visa"></span></td>
-                                                    <td class="text-muted">10 Jul 2020, 8:30 PM</td>
-                                                    <td class="d-flex justify-content-end align-items-center"> <span class="fa fa-long-arrow-down mr-1"></span> Php.150.00 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td scope="row"> <span class="fa fa-exchange mr-1"></span> Certificate of Enrollment </td>
-                                                    <td><span class="fa fa-cc-visa"></span></td>
-                                                    <td class="text-muted">10 Jul 2020, 8:30 PM</td>
-                                                    <td class="d-flex justify-content-end align-items-center"> <span class="fa fa-long-arrow-down mr-1"></span> Php.150.00 </td>
-                                                </tr>
+                                                        <?php
+                                                            $i++;
+                                                        }
+                                                        ?>
+                                                <?php
+                                                } else {
+                                                    echo "No result found";
+                                                }
+                                                ?>
 
-                                                <tr>
-                                                    <td scope="row"> <span class="fa fa-exchange mr-1"></span> Authentication of School ID </td>
-                                                    <td><span class="fa fa-cc-visa"></span></td>
-                                                    <td class="text-muted">10 Jul 2020, 8:30 PM</td>
-                                                    <td class="d-flex justify-content-end align-items-center"> <span class="fa fa-long-arrow-down mr-1"></span> Php.150.00 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td scope="row"> <span class="fa fa-exchange mr-1"></span> Certificate of Enrollment </td>
-                                                    <td><span class="fa fa-cc-visa"></span></td>
-                                                    <td class="text-muted">10 Jul 2020, 8:30 PM</td>
-                                                    <td class="d-flex justify-content-end align-items-center"> <span class="fa fa-long-arrow-down mr-1"></span> Php.150.00 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td scope="row"> <span class="fa fa-exchange mr-1"></span> Certificate of Enrollment </td>
-                                                    <td><span class="fa fa-cc-visa"></span></td>
-                                                    <td class="text-muted">10 Jul 2020, 8:30 PM</td>
-                                                    <td class="d-flex justify-content-end align-items-center"> <span class="fa fa-long-arrow-down mr-1"></span> Php.150.00 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td scope="row"> <span class="fa fa-exchange mr-1"></span> Authentication of School ID </td>
-                                                    <td><span class="fa fa-cc-visa"></span></td>
-                                                    <td class="text-muted">10 Jul 2020, 8:30 PM</td>
-                                                    <td class="d-flex justify-content-end align-items-center"> <span class="fa fa-long-arrow-down mr-1"></span> Php.150.00 </td>
-                                                </tr>
+
+
+
                                             </tbody>
                                         </table>
                                     </div>

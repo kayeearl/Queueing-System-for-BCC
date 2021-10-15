@@ -15,7 +15,7 @@ if (isset($_SESSION["Stud_Id"])) {
 
     $fullname = ucfirst($db_firstname) . " " . ucfirst($db_last_name);
 
-    
+
 
     if (isset($_POST["btnRequest"])) {
         $certificates = $_POST['certificates'];
@@ -26,27 +26,27 @@ if (isset($_SESSION["Stud_Id"])) {
             $total_Amount = $var1 * $var2;
             return $total_Amount;
         }
-        $Auth_Grades_Page = Authentication_of_Grades($quantity_Auth_Grades, "10"); //$quantity_Auth_Grades, "10" are parameters
+        $Auth_Grades_Amount = Authentication_of_Grades($quantity_Auth_Grades, "10"); //$quantity_Auth_Grades, "10" are parameters
 
 
         foreach ($certificates as $cert) {
 
-            mysqli_query($connections, "INSERT into demo(id, purpose, quantity,total_amount) 
-                            VALUES('$user_id', '$cert', '$quantity_Auth_Grades', '$Auth_Grades_Page')");
-            echo mysqli_error($connections);
-            header("location:OnlinePayment.php");
+            // mysqli_query($connections, "INSERT into demo(id, purpose, quantity,total_amount) 
+            //                 VALUES('$user_id', '$cert', '$quantity_Auth_Grades', '$Auth_Grades_Amount')");
+            // echo mysqli_error($connections);
+            // header("location:OnlinePayment.php");
 
 
-            mysqli_query($connections, "INSERT into cashier_transaction(Stud_Id, Transaction_Purpose, quantity,total_amount) 
-                            VALUES('$user_id', '$cert', '$quantity_Auth_Grades', '$Auth_Grades_Page')");
+            mysqli_query($connections, "INSERT into cashier_transaction(Stud_Id, purpose, quantity,total_amount) 
+                            VALUES('$user_id', '$cert', '$quantity_Auth_Grades', '$Auth_Grades_Amount')");
             echo mysqli_error($connections);
             header("location:OnlinePayment.php");
-            // mysqli_query($connections, "INSERT into cashier_transaction(Stud_Id,Transaction_Purpose, No_Of_Copies,Total_Payment) 
+            // mysqli_query($connections, "INSERT into cashier transaction(Stud_Id,Transaction_Purpose, No_Of_Copies,Total_Payment) 
             // VALUES('$user_id', '$cert', '$quantity_Auth_Grades','$Auth_Grades_Page')");
             // echo mysqli_error($connections);
             // header("location:OnlinePayment.php");
             // echo mysqli_error($connections);
-            // header("location:OnlinePayment.php");
+            // header("location:OnlinePayment.php")
         }
     }
 } else {
@@ -124,7 +124,7 @@ if (isset($_SESSION["Stud_Id"])) {
                                                         <td><label for="quantity"></label><input type="number" name="quantity_Auth_Grades" min="1" max="100" value="<?php echo $quantity_Auth_Grades ?>" required></td>
                                                         <td>Php 10.00/Page</td>
                                                         <!-- <td>Php 10.00</td> -->
-                                                        
+
                                                     </tr>
 
                                                     <!-- <td><label for="quantity"></label><input type="number" name="quantity_Auth_Grades" min="1" max="100" value="<?php echo $quantity_Auth_Grades ?>" required></td> -->
@@ -209,13 +209,13 @@ if (isset($_SESSION["Stud_Id"])) {
                                                         <td>Php 350.00</td>
                                                         <!-- <td>Php 0.00</td> -->
                                                     </tr>
-                                                   
-                                                
+
+
                                                     <tr>
                                                         <td colspan="4">
-                                                            <a href="OnlineInvoice.php">
-                                                                <button type="submit" name="btnRequest">Request</button>
-                                                            </a>
+
+                                                            <button type="submit" name="btnRequest"> <a href="OnlineInvoice.php">Request</a></button>
+                                                           
                                                         </td>
                                                     </tr>
                                                 </tbody>
