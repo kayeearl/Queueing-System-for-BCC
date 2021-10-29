@@ -19,7 +19,7 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.php" role="button">
+                    <a class="nav-link" href="includes/logout.php" role="button">
                         Logout <i class="fas fa-user"></i>
                     </a>
                 </li>

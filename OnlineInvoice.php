@@ -1,19 +1,9 @@
 <?Php
 session_start();
-include("Database.php");
-if (isset($_SESSION["Stud_Id"])) {
-    $user_id = $_SESSION["Stud_Id"];
-    $get_record = mysqli_query($connections, "SELECT * FROM student WHERE Stud_Id = '$user_id'");
-    $row = mysqli_fetch_assoc($get_record);
-    $db_firstname = $row['Stud_Fname'];
-    $db_middle_name = $row["Stud_Mname"];
-    $db_last_name = $row["Stud_Lname"];
+@include('includes/session.php');
+@include('includes/profile.php');
+ 
 
-    $get_record2 = mysqli_query($connections, "SELECT * FROM login_credentials WHERE email = '$user_id'");
-    $row2 = mysqli_fetch_assoc($get_record2);
-    $profile_pic = $row2['profile_pic'];
-
-    $fullname = ucfirst($db_firstname) . " " . ucfirst($db_last_name);
 
     $get_record3 = mysqli_query($connections, "SELECT * FROM cashier_transaction WHERE Stud_Id = '$user_id'");
     $row3 = mysqli_fetch_assoc($get_record3);
@@ -22,9 +12,7 @@ if (isset($_SESSION["Stud_Id"])) {
     $quantity = $row3['quantity'];
     $total_amount = $row3['total_amount'];
     $date = $row3['date'];
-} else {
-    echo "<script>window.location.href = 'login.php';</script>";
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -124,8 +112,6 @@ if (isset($_SESSION["Stud_Id"])) {
                                                     <th>Transaction Number</th>
                                                     <th>Subtotal</th>
                                                 </tr>
-                                           
-
                                                 <?php
                                                 $i = 0;
                                                 while ($row = mysqli_fetch_array($result)) {

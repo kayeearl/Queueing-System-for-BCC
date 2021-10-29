@@ -1,23 +1,26 @@
 <?Php
 session_start();
-include("Database.php");
-if (isset($_SESSION["Stud_Id"])) {
-    $user_id = $_SESSION["Stud_Id"];
-    $get_record = mysqli_query($connections, "SELECT * FROM student WHERE Stud_Id = '$user_id'");
-    $row = mysqli_fetch_assoc($get_record);
-    $db_firstname = $row['Stud_Fname'];
-    $db_middle_name = $row["Stud_Mname"];
-    $db_last_name = $row["Stud_Lname"];
+ @include('includes/session.php');
+@include('includes/profile.php');
+// include("Database.php");
+// if (isset($_SESSION["Stud_Id"])) {
+//     $user_id = $_SESSION["Stud_Id"];
+//     $get_record = mysqli_query($connections, "SELECT * FROM student WHERE Stud_Id = '$user_id'");
+//     $row = mysqli_fetch_assoc($get_record);
+//     $db_firstname = $row['Stud_Fname'];
+//     $db_middle_name = $row["Stud_Mname"];
+//     $db_last_name = $row["Stud_Lname"];
 
-    $get_record2 = mysqli_query($connections, "SELECT * FROM login_credentials WHERE email = '$user_id'");
-    $row2 = mysqli_fetch_assoc($get_record2);
-    $profile_pic = $row2['profile_pic'];
+//     $get_record2 = mysqli_query($connections, "SELECT * FROM login_credentials WHERE email = '$user_id'");
+//     $row2 = mysqli_fetch_assoc($get_record2);
+//     $profile_pic = $row2['profile_pic'];
 
-    $fullname = ucfirst($db_firstname) . " " . ucfirst($db_last_name);
-    $result = mysqli_query($connections, "SELECT * FROM cashier_transaction Where Stud_Id = $user_id");
-} else {
-    echo "<script>window.location.href = 'login.php';</script>";
-}
+//     $fullname = ucfirst($db_firstname) . " " . ucfirst($db_last_name);
+//     $result = mysqli_query($connections, "SELECT * FROM cashier_transaction Where Stud_Id = $user_id");
+// } else {
+//     echo "<script>window.location.href = 'login.php';</script>";
+// }
+$result = mysqli_query($connections, "SELECT * FROM cashier_transaction Where Stud_Id = $user_id")
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +47,8 @@ if (isset($_SESSION["Stud_Id"])) {
         <?php @include('includes/nav.php'); ?>
 
         <div class="container-fluid">
-            <!--  Start Your Code Here =========================================================== -->
+
+            <!--  Start Code Here =========================================================== -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
@@ -63,7 +67,7 @@ if (isset($_SESSION["Stud_Id"])) {
                         <div class="col-12">
                             <div class="wrapper rounded">
                                 <nav class="navbar navbar-expand-lg navbar-dark dark d-lg-flex align-items-lg-start">
-                                    <a class="navbar-brand" href="#">Transactions
+                                    <a class="navbar-brand" href="#">Transactions History
                                         <p class="text-muted pl-1">Welcome to your Transactions History</p>
                                     </a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="navbar-toggler-icon"></span> </button>
@@ -80,8 +84,8 @@ if (isset($_SESSION["Stud_Id"])) {
                                         <div class="col-md-6">
                                             <div class="d-flex justify-content-md-end align-items-center">
                                                 <div class="fa fa-long-arrow-up"></div>
-                                                <div class="text mx-3">Payment</div>
-                                                <div class="ml-4 money"> Php 0.00</div>
+                                                <!-- <div class="text mx-3">Payment</div>
+                                                <div class="ml-4 money"> Php 0.00</div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -96,6 +100,7 @@ if (isset($_SESSION["Stud_Id"])) {
                                                 <th>
                                                     <td scope="col">Certification</td>
                                                     <td scope="col">Transaction Number</td>
+                                                    <td scope="col">OR Number</td>
                                                     <td scope="col">Total Amount</td>
                                                     <td scope="col">Date</td>
 
@@ -113,7 +118,7 @@ if (isset($_SESSION["Stud_Id"])) {
                                                                 <td > </td>
                                                                 <td > <?php echo $row["purpose"]; ?></td>
                                                                 <td > <?php echo $row["Trans_No"]; ?></td>
-                                                                
+                                                                <td></td>
                                                                 <td > <?php echo $row["total_amount"]; ?></td>
                                                                 <td > <?php echo $row["date"]; ?></td>
                                                                
@@ -129,10 +134,6 @@ if (isset($_SESSION["Stud_Id"])) {
                                                     echo "No result found";
                                                 }
                                                 ?>
-
-
-
-
                                             </tbody>
                                         </table>
                                     </div>
@@ -143,11 +144,9 @@ if (isset($_SESSION["Stud_Id"])) {
             </div>
         </div>
     </div>
-
     <!-- =========================================================== -->
-    <!-- Your Code End Here -->
+    <!-- Code End Here -->
 
-    <?php @include('includes/js.php'); ?>
+<?php @include('includes/js.php'); ?>
 </body>
-
 </html>

@@ -1,11 +1,11 @@
 <?php
 session_start();
-include("Database.php");
+include("includes/Database.php");
 if (isset($_SESSION["Stud_Id"])) {
     $user_id = $_SESSION["Stud_Id"];
-    $get_record = mysqli_query($connections, "SELECT * FROM student WHERE Stud_Id = '$user_id'");
+    $get_record = mysqli_query($connections, "SELECT * FROM accounts WHERE Stud_Id = '$user_id'");
     $row = mysqli_fetch_assoc($get_record);
-    echo "<script>window.location.href = 'index.php';</script>";
+
 }
 $email = $password = "";
 
@@ -13,14 +13,14 @@ if (isset($_POST["logInSubmit"])) {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $check_account = mysqli_query($connections, "SELECT * FROM login_credentials WHERE email ='$email' and password = '$password'");
+    $check_account = mysqli_query($connections, "SELECT * FROM accounts WHERE Stud_Id ='$email' and password = '$password'");
     if (mysqli_num_rows($check_account) > 0) {
         $row = mysqli_fetch_assoc($check_account);
-        $user_id = $row["email"];
+        $user_id = $row["Stud_Id"];
         $db_password = $row["password"];
         if ($password == $db_password) {
             $_SESSION["Stud_Id"] = $user_id;
-            // echo "<script>window.location.href = 'index.php';</script>";
+       
 
 ?>
             <div class="popup popup--icon -success js_success-popup popup--visible">
@@ -31,7 +31,6 @@ if (isset($_POST["logInSubmit"])) {
                         </h1>
                         <p>Login Successfully</p>
                         <p>
-
                             <?php echo "<script>setTimeout(\"location.href = 'index.php';\",1500);</script>"; ?>
                         </p>
                 </div>
