@@ -2772,7 +2772,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary {
-  color: #fff;
+  color:#000;
   background-color: #007bff;
   border-color: #007bff;
   box-shadow: none;
@@ -3333,12 +3333,12 @@ fieldset:disabled a.btn {
 
 .btn-link {
   font-weight: 400;
-  color: #007bff;
+  /* color: #007bff; */
   text-decoration: none;
 }
 
 .btn-link:hover {
-  color: #0056b3;
+  /* color: #0056b3; */
   text-decoration: none;
 }
 
@@ -30224,7 +30224,7 @@ html.maximized-card {
 }
 
 .dark-mode .card-navy:not(.card-outline) > .card-header,
-.dark-mode .card-navy:not(.card-outline) > .card-header a {
+.dark-mode .card-navy:not(.card-outline) > .card-header {
   color: #fff;
 }
 

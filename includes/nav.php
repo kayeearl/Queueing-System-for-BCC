@@ -52,9 +52,18 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <!-- <li class="nav-item menu-open"> -->
+                    <li class="nav-item ">
+                            <a href="dashboard.php" class="nav-link ">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                   Dashboard   
+                                </p>
+                            </a>
+                         
+
                         <li class="nav-item menu-open">
                             <a href="#" class="nav-link ">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <i class="nav-icon fas fa-chalkboard-teacher"></i>
                                 <p>
                                     Queueing Transaction
                                     <i class="right fas fa-angle-left"></i>
@@ -63,8 +72,8 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="index.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Check Queue Position</p>
+                                        <i class="fas fa-user-clock nav-icon"></i>
+                                        <p>Queueing Counter</p>
                                     </a>
                                 </li>
                             </ul>
@@ -81,13 +90,13 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="OnlinePayment.php" class="nav-link ">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="fas fa-receipt nav-icon"></i>
                                         <p>Pay Online</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="Transaction.php" class="nav-link ">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="fas fa-history nav-icon"></i>
                                         <p>Transaction History</p>
                                     </a>
                                 </li>

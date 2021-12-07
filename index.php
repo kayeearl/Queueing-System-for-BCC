@@ -2,17 +2,8 @@
     @include('includes/session.php');
     @include('includes/profile.php');
     $user_id =  $_SESSION['Stud_Id'];
-        $sql1 = "SELECT * FROM accounts where Stud_Id = '$user_id'";
-        $result1 = mysqli_query($connections,$sql1);
-        $row1 = mysqli_fetch_array($result1,MYSQLI_ASSOC);
-        $account_type =  $row1['account_type'];
-        $account_id = $row1['Stud_Id'];
-$sql2 = "SELECT * FROM queueing_list where Stud_Id = '$user_id'";
-        $result2 = mysqli_query($connections,$sql2);
-        $row2 = mysqli_fetch_array($result2,MYSQLI_ASSOC);
-
-        $transaction_id =  $row2['transaction_id'];
-
+//       
+@session_start();
 ?>
 
 <!DOCTYPE html>
@@ -45,146 +36,185 @@ $sql2 = "SELECT * FROM queueing_list where Stud_Id = '$user_id'";
                             <h1>Queue Number Inline</h1>
                         </div>
                     </div>
-                </div><!-- /.container-fluid -->
+                </div>
             </section>
             <!-- =========================================================== -->
 
             <!-- Main content -->
-<form method="post">
             <section class="content">
+                <?php
+                    if (!empty($_SESSION['alert']))
+                    {
+                        echo'<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        '.$_SESSION['alert'].'
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>';
+                        $_SESSION['alert']="";
+                    }
+                
+                ?>
+                 
                 <!-- =========================================================== -->
-                <!-- Office Queueing Number(Stat card) -->
+                <!-- Office Queueing Number-->
                 <div class="row">
-                    <div class="col-lg-6 col-12">
+                    
+                    <div class="col-lg-3 col-12">
                         <!-- small card -->
                         <div class="small-box bg-info">
                             <div class="inner">
                                 <h1>CASHIER</h1>
                                 <center>
                                     <hr>
-                                    <h4>Now Serving</h4>
+                                    <h4>Transaction Number</h4>
                                     <hr>
                                     <h1 class="queue-number"> <?php 
-                                        $sql = "SELECT * FROM queueing_list where transaction_type = 'cashier'";
+                                         $id = $_SESSION['Stud_Id'];
+                                         $date = date("Y-m-d");
+                                        $sql = "SELECT * FROM queueing_list where transaction_type = 'cashier' and Stud_Id='$id' and date_transaction='$date'  order by id DESC LIMIT 1";
                                         $result = mysqli_query($connections,$sql);
-                                        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-                                        $count = mysqli_num_rows($result);
-                                        echo $count;
+                                        while($row = mysqli_fetch_array($result))
+                                        {
+                                           echo $counter  = $row['transaction_id'].'<br>';
+                                        }
+                                        // $count = mysqli_num_rows($result);
+                                        
                                     ?>  </h1>
                                     <br>
                                 </center>
                             </div>
-
+                                <form method="POST" action="get_cashier.php">
                                 <center><button type="submit" name="cashier" class="btn btn-default">
                                         Get Queue Number
                                     </button></center>
                                 <br>
+                                </form>
                         
                             <a href="#" class="small-box-footer">
                                 <p>Please standby for the next transaction number <i class="fas fa-arrow-circle-right"></i></p>
-                                 <p><?php echo  $transaction_id ?></p>
+                                
                             </a>
                         </div>
                     </div>
-                    <!-- ./col -->
-                    <div class="col-lg-6 col-12">
+            <!-- ________________________________________________________ -->
+                    <div class="col-lg-3 col-12">
                         <!-- small card -->
-                        <div class="small-box bg-success">
+                         <div class="small-box bg-success">
                             <div class="inner">
                                 <h1>REGISTRAR</h1>
                                 <center>
                                     <hr>
-                                    <h4>Now Serving</h4>
+                                    <h4>Transaction Number</h4>
                                     <hr>
-                                    <h1 class="queue-number"><?php 
-                                        $sql = "SELECT * FROM queueing_list where transaction_type = 'registrar'";
+                                    <h1 class="queue-number"> <?php 
+                                         $id = $_SESSION['Stud_Id'];
+                                         $date = date("Y-m-d");
+                                        $sql = "SELECT * FROM queueing_list where transaction_type = 'registrar' and Stud_Id='$id' and date_transaction='$date'  order by id DESC LIMIT 1";
                                         $result = mysqli_query($connections,$sql);
-                                        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-                                        $count = mysqli_num_rows($result);
-                                        echo $count;
-                                    ?></h1>
+                                        while($row = mysqli_fetch_array($result))
+                                        {
+                                           echo $counter  = $row['transaction_id'].'<br>';
+                                        }
+                                        // $count = mysqli_num_rows($result);
+                                        
+                                    ?>  </h1>
                                     <br>
                                 </center>
                             </div>
-                           
-                                <center><button name="registrar" class="btn btn-default" data-toggle="modal" data-target="#modal-cashier">
+                                <form method="POST" action="get_cashier.php">
+                                <center><button type="submit" name="registrar" class="btn btn-default">
                                         Get Queue Number
                                     </button></center>
                                 <br>
-                           
-                            <a href="get.php" class="small-box-footer">
+                                </form>
+                        
+                            <a href="#" class="small-box-footer">
                                 <p>Please standby for the next transaction number <i class="fas fa-arrow-circle-right"></i></p>
+                                
                             </a>
                         </div>
                     </div>
-                    <!-- ./col -->
-                    <div class="col-lg-6 col-12">
+                   <!-- ________________________________________________________ -->
+                    <div class="col-lg-3 col-12">
                         <!-- small card -->
                         <div class="small-box bg-warning">
                             <div class="inner">
                                 <h1>ACCOUNTING</h1>
                                 <center>
                                     <hr>
-                                    <h4>Now Serving</h4>
+                                    <h4>Transaction Number</h4>
                                     <hr>
-                                    <h1 class="queue-number"><?php 
-                                        $sql = "SELECT * FROM queueing_list where transaction_type = 'accounting'";
+                                    <h1 class="queue-number"> <?php 
+                                         $id = $_SESSION['Stud_Id'];
+                                         $date = date("Y-m-d");
+                                        $sql = "SELECT * FROM queueing_list where transaction_type = 'accounting' and Stud_Id='$id' and date_transaction='$date'  order by id DESC LIMIT 1";
                                         $result = mysqli_query($connections,$sql);
-                                        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-                                        $count = mysqli_num_rows($result);
-                                        echo $count;
-                                    ?></h1>
+                                        while($row = mysqli_fetch_array($result))
+                                        {
+                                           echo $counter  = $row['transaction_id'].'<br>';
+                                        }
+                                        // $count = mysqli_num_rows($result);
+                                        
+                                    ?>  </h1>
                                     <br>
                                 </center>
                             </div>
-                            
-                                <center><button name="accounting" class="btn btn-default" data-toggle="modal" data-target="#modal-cashier">
+                                <form method="POST" action="get_cashier.php">
+                                <center><button type="submit" name="accounting" class="btn btn-default">
                                         Get Queue Number
                                     </button></center>
                                 <br>
-                            
+                                </form>
+                        
                             <a href="#" class="small-box-footer">
                                 <p>Please standby for the next transaction number <i class="fas fa-arrow-circle-right"></i></p>
+                                
                             </a>
                         </div>
                     </div>
-                    <!-- ./col -->
-                 <div class="col-lg-6 col-12">
+                    <!-- ________________________________________________________ -->
+                 <div class="col-lg-3 col-12">
                         <!-- small card -->
                         <div class="small-box bg-danger">
-                            <div class="inner">
+                             <div class="inner">
                                 <h1>ADMISSION</h1>
                                 <center>
                                     <hr>
-                                    <h4>Now Serving</h4>
+                                    <h4>Transaction Number</h4>
                                     <hr>
-                                    <h1 class="queue-number"><?php 
-                                        $sql = "SELECT * FROM queueing_list where transaction_type = 'admission'";
+                                    <h1 class="queue-number"> <?php 
+                                         $id = $_SESSION['Stud_Id'];
+                                         $date = date("Y-m-d");
+                                        $sql = "SELECT * FROM queueing_list where transaction_type = 'admission' and Stud_Id='$id' and date_transaction='$date'  order by id DESC LIMIT 1";
                                         $result = mysqli_query($connections,$sql);
-                                        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-                                        $count = mysqli_num_rows($result);
-                                        echo $count;
-                                    ?></h1>
+                                        while($row = mysqli_fetch_array($result))
+                                        {
+                                           echo $counter  = $row['transaction_id'].'<br>';
+                                        }
+                                        // $count = mysqli_num_rows($result);
+                                        
+                                    ?>  </h1>
                                     <br>
                                 </center>
                             </div>
-                            
-                                <center><button name="admission" class="btn btn-default" data-toggle="modal" data-target="#modal-cashier">
+                                <form method="POST" action="get_cashier.php">
+                                <center><button type="submit" name="admission" class="btn btn-default">
                                         Get Queue Number
                                     </button></center>
                                 <br>
-                            
+                                </form>
+                        
                             <a href="#" class="small-box-footer">
                                 <p>Please standby for the next transaction number <i class="fas fa-arrow-circle-right"></i></p>
+                                
                             </a>
                         </div>
                     </div>
                 </div>
-            </section>
-   </form>             
-                <!-- ./col -->
+            </section>     
+   <!-- </form>             -->
         </div>
-        <!-- /.row -->
         <!-- =========================================================== -->
      </div>
     </div>

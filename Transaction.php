@@ -2,24 +2,7 @@
 session_start();
  @include('includes/session.php');
 @include('includes/profile.php');
-// include("Database.php");
-// if (isset($_SESSION["Stud_Id"])) {
-//     $user_id = $_SESSION["Stud_Id"];
-//     $get_record = mysqli_query($connections, "SELECT * FROM student WHERE Stud_Id = '$user_id'");
-//     $row = mysqli_fetch_assoc($get_record);
-//     $db_firstname = $row['Stud_Fname'];
-//     $db_middle_name = $row["Stud_Mname"];
-//     $db_last_name = $row["Stud_Lname"];
 
-//     $get_record2 = mysqli_query($connections, "SELECT * FROM login_credentials WHERE email = '$user_id'");
-//     $row2 = mysqli_fetch_assoc($get_record2);
-//     $profile_pic = $row2['profile_pic'];
-
-//     $fullname = ucfirst($db_firstname) . " " . ucfirst($db_last_name);
-//     $result = mysqli_query($connections, "SELECT * FROM cashier_transaction Where Stud_Id = $user_id");
-// } else {
-//     echo "<script>window.location.href = 'login.php';</script>";
-// }
 $result = mysqli_query($connections, "SELECT * FROM cashier_transaction Where Stud_Id = $user_id")
 ?>
 <!DOCTYPE html>
@@ -51,14 +34,14 @@ $result = mysqli_query($connections, "SELECT * FROM cashier_transaction Where St
             <!--  Start Code Here =========================================================== -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
-                <section class="content-header">
+                <!-- <section class="content-header">
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
                             </div>
                         </div>
-                    </div><!-- /.container-fluid -->
-                </section>
+                    </div>
+                </section> -->
 
                 <!--Main content =========================================================== -->
 
@@ -66,76 +49,92 @@ $result = mysqli_query($connections, "SELECT * FROM cashier_transaction Where St
                     <div class="row">
                         <div class="col-12">
                             <div class="wrapper rounded">
-                                <nav class="navbar navbar-expand-lg navbar-dark dark d-lg-flex align-items-lg-start">
+                                <nav class="navbar navbar-expand-lg  d-lg-flex align-items-lg-start">
                                     <a class="navbar-brand" href="#">Transactions History
                                         <p class="text-muted pl-1">Welcome to your Transactions History</p>
-                                    </a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                                        <span class="navbar-toggler-icon"></span> </button>
+                                    </a> 
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> 
+                                     </button>
                                 </nav>
-                                <section class="content">
-                                    <div class="row mt-2 pt-2">
-                                        <div class="col-md-6" id="income">
-                                            <div class="d-flex justify-content-start align-items-center">
-                                                <p class="fa fa-long-arrow-down"></p>
-                                                <p class="text mx-3">Current Balance</p>
-                                                <p class="ml-4 money">Php 0.00</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="d-flex justify-content-md-end align-items-center">
-                                                <div class="fa fa-long-arrow-up"></div>
-                                                <!-- <div class="text mx-3">Payment</div>
-                                                <div class="ml-4 money"> Php 0.00</div> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                
+                                    
+                                    <div class="d-flex justify-content-between align-items-center mt-2">
                                         <ul class="nav nav-tabs w-75">
-                                            <a href="form.html" class="nav-link ">
-                                        </ul> <button class="btn btn-primary">New Transaction</button>
+                                            <a href="form.html" class="nav-link "></a>
+                                        </ul> 
+                                        <button class="btn btn-primary">Check Account Balance</button>
                                     </div>
-                                    <div class="table-responsive mt-3">
-                                        <table class="table table-dark table-borderless">
-                                            <thead>
-                                                <th>
-                                                    <td scope="col">Certification</td>
-                                                    <td scope="col">Transaction Number</td>
-                                                    <td scope="col">OR Number</td>
-                                                    <td scope="col">Total Amount</td>
-                                                    <td scope="col">Date</td>
-
-                                                </th>
-                                            </thead>
-                                            <tbody>
+                                    
+            <div class="table-responsive">
+                <div class="col-sm-12">
+                <table class="table table-bordered" id='report-list'>
+                    <thead>
+                        <tr>
+                            <!-- <th class="text-center">#</th> -->
+                            <th class="">Transaction No.</th>
+                            <th class="">Invoice No.</th>
+                            <th class="">Certification</th>
+                            <th class="">Price</th>
+                            <th class="">Date</th>
+                            <th class="">Action</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
                                                 <?php
                                                 if (mysqli_num_rows($result) > 0) {
                                                 ?>
                                                         <?php
-                                                        $i = 0;
+                                                       
                                                         while ($row = mysqli_fetch_array($result)) {
+                                                        
                                                         ?>
                                                             <tr>
-                                                                <td > </td>
-                                                                <td > <?php echo $row["purpose"]; ?></td>
+                                                               
                                                                 <td > <?php echo $row["Trans_No"]; ?></td>
-                                                                <td></td>
+                                                                <td > <?php echo $row["invoice_no"]; ?></td>
+                                                                <td > <?php echo $row["certificate"]; ?></td>
                                                                 <td > <?php echo $row["total_amount"]; ?></td>
                                                                 <td > <?php echo $row["date"]; ?></td>
-                                                               
-                                                              
+                                                                <td>
+                        <button class="btn-sm btn-danger" style="width: 100px;" type="button" id="print"><i class="fa fa-file-pdf"></i> Download</button>
+                        <button class="btn-sm btn-success" style="width: 100px;"  type="button" id="print"><i class="fa fa-print"></i> Print</button>
+                                                                </td>
                                                             </tr>
 
                                                         <?php
-                                                            $i++;
+                                                          
                                                         }
                                                         ?>
                                                 <?php
-                                                } else {
+                                                } else {?>
+                                                <tr>
+                                                    <td colspan="6"><center> 
+                                                        <?php echo "No result found"; ?>
+                                                    </center></td>
+                                                </tr>
+                                                    
+                                                <?php 
                                                     echo "No result found";
                                                 }
                                                 ?>
-                                            </tbody>
-                                        </table>
+                    
+			        </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <!-- <th colspan="5" class="text-right">Total Amount</th> -->
+                            
+                            
+                        </tr>
+                    </tfoot>
+                </table>
+                <hr>
+                
+            </div>
+                               
+                                        
+                                    </div>
                                     </div>
                             </div>
                         </div>
@@ -145,8 +144,10 @@ $result = mysqli_query($connections, "SELECT * FROM cashier_transaction Where St
         </div>
     </div>
     <!-- =========================================================== -->
+    
     <!-- Code End Here -->
 
 <?php @include('includes/js.php'); ?>
+<script src="assets/DataTables/datatables.min.js"></script>
 </body>
 </html>

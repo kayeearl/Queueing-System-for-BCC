@@ -1,6 +1,7 @@
 <?php
 session_start();
-include("includes/Database.php");
+ @include("includes/Database.php");
+
 if (isset($_SESSION["Stud_Id"])) {
     $user_id = $_SESSION["Stud_Id"];
     $get_record = mysqli_query($connections, "SELECT * FROM accounts WHERE Stud_Id = '$user_id'");
@@ -20,40 +21,72 @@ if (isset($_POST["logInSubmit"])) {
         $db_password = $row["password"];
         if ($password == $db_password) {
             $_SESSION["Stud_Id"] = $user_id;
+
+           echo '
+<div class="popup popup--icon -success js_success-popup">
+  <div class="popup__background"></div>
+  <div class="popup__content">
+    <h3 class="popup__content__title">
+      Success Popup
+    </h1>
+    <p>Lorem Ipsum dolor sit amet!</p>
+    <p>
+      <button class="button button--success" data-for="js_success-popup">Hide Popup</button>
+    </p>
+  </div>
+</div>
+';
+
+    echo "<script>setTimeout(\"location.href = 'index.php';\",1500);</script>"; 
+
+ 
+            // <!-- <div class="popup popup-icon js_success-popup popup-visible">
+            //     <div class="popup__background"></div>
+            //     <div class="popup__content">
+            //         <h3 class="popup__content__title">
+            //             Success
+            //             </h1>
+            //             <p>Login Successfully</p>
+            //             <p>
+                           
+            //             </p>
+            //     </div> -->
+            // </div>
+   
+    } else { 
+//         echo " <script>
+//     Swal.fire({
+//   icon: 'error',
+//   title: 'Oops...',
+//   text: 'Something went wrong!'
+// })
+// </script>";
+    echo ' 
+<div class="popup popup--icon -error js_error-popup">
+  <div class="popup__background"></div>
+  <div class="popup__content">
+    <h3 class="popup__content__title">
+      Error Popup
+    </h1>
+    <p>Lorem Ipsum dolor sit amet!</p>
+    <p>
+      <button class="button button--error" data-for="js_error-popup">Hide Popup</button>
+    </p>
+  </div>
+</div>';
+
+        // echo ' <button type="button" class="btn btn-info swalDefaultInfo">
+        //           Launch Info Toast
+        //         </button>';
+        //  echo "<script>alert('Incorrect Email or Password');</script>";
+  }
+} 
+}  
+  
+
+        
+
        
-
-?>
-            <div class="popup popup--icon -success js_success-popup popup--visible">
-                <div class="popup__background"></div>
-                <div class="popup__content">
-                    <h3 class="popup__content__title">
-                        Success
-                        </h1>
-                        <p>Login Successfully</p>
-                        <p>
-                            <?php echo "<script>setTimeout(\"location.href = 'index.php';\",1500);</script>"; ?>
-                        </p>
-                </div>
-            </div>
-        <?php }
-    } else { ?>
-
-        <div class="popup popup--icon -error js_error-popup popup--visible">
-            <div class="popup__background"></div>
-            <div class="popup__content">
-                <h3 class="popup__content__title">
-                    Error
-                    </h1>
-                    <p>Incorrect username/password combination</p>
-                    <p>
-                        <a href="login.php"><button class="button button--error" data-for="js_error-popup">Close</button></a>
-                    </p>
-            </div>
-        </div>
-<?php
-        // echo "<script>alert('Incorrect Email or Password');</script>";
-    }
-}
 
 ?>
 <!DOCTYPE html>
@@ -63,22 +96,11 @@ if (isset($_POST["logInSubmit"])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>UIIS | Log in</title>
+    <?php  @include('includes/css.php');?>
+    <?php  @include('includes/js.php');?>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+</head>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-    <!-- Toastr -->
-    <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="dist/css/helper.css">
-    <link rel="stylesheet" href="dist/css/chartist.min.css">
-    <link rel="stylesheet" href="assets/css/popup_style.css">
     <style>
         .body-bg {
             background-image: url(dist/img/cspccampus.jpg);
@@ -151,9 +173,9 @@ if (isset($_POST["logInSubmit"])) {
     <script src="./assets/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
 
     <script src="./assets/js/custom.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 
 </body>
-
 </html>
