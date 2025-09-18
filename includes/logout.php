@@ -14,6 +14,6 @@ unset($_SESSION['user_id']);
 session_unset();
 session_destroy();
 echo "Logging out... Please wait...";
-echo "<script>window.location.href = '../index.php?logout=shuffled_logout&v=user_md5';</script>";
+echo "<script>window.location.href = '../admin_login.php?logout=shuffled_logout&v=user_md5';</script>";
 exit();
 ?> 

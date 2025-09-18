@@ -2,7 +2,10 @@
     @include('includes/session.php');
     @include('includes/profile.php');
     $user_id =  $_SESSION['Stud_Id'];
-//       
+    // $date = date("Y-m-d");
+     $dateTime = new DateTime("NOW", new DateTimeZone('Asia/Manila'));
+    $date =$dateTime->format("Y-m-d");
+    //       
 @session_start();
 ?>
 
@@ -12,16 +15,54 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Get Queue number</title>
+    <title>Queueing Counter</title>
 
     <?php @include('includes/css.php'); ?>
-
 </head>
+<style>
+    #btnColor{
+        color: #000000;
+        border-color: #000000;
+        /* background-color: #ffffff; */
+    }
+</style>
 
 </html>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
+                <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+        </div>
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="index.php" class="nav-link"> </a>   
+                </li>
+                 <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Queueing Counter</a>
+      </li>
+            </ul>
+            <!-- =========================================================== -->
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item">
+                    <a class="nav-link" href="includes/logout.php" role="button">
+                        Logout <i class="fas fa-user"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- =========================================================== -->
           <?php
            @include('includes/nav.php'); 
            ?>
@@ -53,6 +94,16 @@
                         </div>';
                         $_SESSION['alert']="";
                     }
+                     if (!empty($_SESSION['alert_warning']))
+                    {
+                        echo'<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        '.$_SESSION['alert'].'
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>';
+                        $_SESSION['alert']="";
+                    }
                 
                 ?>
                  
@@ -71,12 +122,13 @@
                                     <hr>
                                     <h1 class="queue-number"> <?php 
                                          $id = $_SESSION['Stud_Id'];
-                                         $date = date("Y-m-d");
+                                        //  $date = date("Y-m-d");
                                         $sql = "SELECT * FROM queueing_list where transaction_type = 'cashier' and Stud_Id='$id' and date_transaction='$date'  order by id DESC LIMIT 1";
                                         $result = mysqli_query($connections,$sql);
                                         while($row = mysqli_fetch_array($result))
                                         {
                                            echo $counter  = $row['transaction_id'].'<br>';
+                           
                                         }
                                         // $count = mysqli_num_rows($result);
                                         
@@ -85,7 +137,7 @@
                                 </center>
                             </div>
                                 <form method="POST" action="get_cashier.php">
-                                <center><button type="submit" name="cashier" class="btn btn-default">
+                                <center><button type="submit" name="cashier" class="btn btn-default" id="btnColor">
                                         Get Queue Number
                                     </button></center>
                                 <br>
@@ -109,7 +161,7 @@
                                     <hr>
                                     <h1 class="queue-number"> <?php 
                                          $id = $_SESSION['Stud_Id'];
-                                         $date = date("Y-m-d");
+                                        //  $date = date("Y-m-d");
                                         $sql = "SELECT * FROM queueing_list where transaction_type = 'registrar' and Stud_Id='$id' and date_transaction='$date'  order by id DESC LIMIT 1";
                                         $result = mysqli_query($connections,$sql);
                                         while($row = mysqli_fetch_array($result))
@@ -123,7 +175,7 @@
                                 </center>
                             </div>
                                 <form method="POST" action="get_cashier.php">
-                                <center><button type="submit" name="registrar" class="btn btn-default">
+                                <center><button type="submit" name="registrar" class="btn btn-default" id="btnColor">
                                         Get Queue Number
                                     </button></center>
                                 <br>
@@ -147,7 +199,7 @@
                                     <hr>
                                     <h1 class="queue-number"> <?php 
                                          $id = $_SESSION['Stud_Id'];
-                                         $date = date("Y-m-d");
+                                        //  $date = date("Y-m-d");
                                         $sql = "SELECT * FROM queueing_list where transaction_type = 'accounting' and Stud_Id='$id' and date_transaction='$date'  order by id DESC LIMIT 1";
                                         $result = mysqli_query($connections,$sql);
                                         while($row = mysqli_fetch_array($result))
@@ -161,7 +213,7 @@
                                 </center>
                             </div>
                                 <form method="POST" action="get_cashier.php">
-                                <center><button type="submit" name="accounting" class="btn btn-default">
+                                <center><button type="submit" name="accounting" class="btn btn-default" id="btnColor">
                                         Get Queue Number
                                     </button></center>
                                 <br>
@@ -185,7 +237,7 @@
                                     <hr>
                                     <h1 class="queue-number"> <?php 
                                          $id = $_SESSION['Stud_Id'];
-                                         $date = date("Y-m-d");
+                                        //  $date = date("Y-m-d");
                                         $sql = "SELECT * FROM queueing_list where transaction_type = 'admission' and Stud_Id='$id' and date_transaction='$date'  order by id DESC LIMIT 1";
                                         $result = mysqli_query($connections,$sql);
                                         while($row = mysqli_fetch_array($result))
@@ -199,7 +251,7 @@
                                 </center>
                             </div>
                                 <form method="POST" action="get_cashier.php">
-                                <center><button type="submit" name="admission" class="btn btn-default">
+                                <center><button type="submit" name="admission" class="btn btn-default" id="btnColor">
                                         Get Queue Number
                                     </button></center>
                                 <br>

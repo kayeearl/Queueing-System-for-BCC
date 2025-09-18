@@ -1,12 +1,11 @@
 <?php
 session_start();
- @include("includes/Database.php");
+@include("includes/Database.php");
 
 if (isset($_SESSION["id"])) {
     $user_id = $_SESSION["id"];
     $get_record = mysqli_query($connections, "SELECT * FROM admin WHERE username = '$user_id'");
     $row = mysqli_fetch_assoc($get_record);
-
 }
 $email = $password = "";
 
@@ -21,7 +20,7 @@ if (isset($_POST["logInSubmit"])) {
         $db_password = $row["password"];
         if ($password == $db_password) {
             $_SESSION["Stud_Id"] = $user_id;
-       
+
 
 ?>
             <div class="popup popup-icon js_success-popup popup-visible">
@@ -32,7 +31,7 @@ if (isset($_POST["logInSubmit"])) {
                         </h1>
                         <p>Login Successfully</p>
                         <p>
-                            <?php echo "<script>setTimeout(\"location.href = 'admin.php';\",1500);</script>"; ?>
+                            <?php echo "<script>setTimeout(\"location.href = 'admin_index.php';\",1500);</script>"; ?>
                         </p>
                 </div>
             </div>
@@ -47,7 +46,7 @@ if (isset($_POST["logInSubmit"])) {
                     </h1>
                     <p>Incorrect username/password combination</p>
                     <p>
-                        <a href="login.php"><button class="button button--error" data-for="js_error-popup">Close</button></a>
+                        <a href="iindex.php"><button class="button button--error" data-for="js_error-popup">Close</button></a>
                     </p>
             </div>
         </div>
@@ -64,11 +63,11 @@ if (isset($_POST["logInSubmit"])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>UIIS | Log in</title>
-    <?php  @include('includes/css.php');?>
+    <?php @include('includes/css.php'); ?>
 
     <style>
         .body-bg {
-            background-image: url(dist/img/cspccampus.jpg);
+            background-image: url(dist/img/Frame\ 1.png);
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -79,12 +78,12 @@ if (isset($_POST["logInSubmit"])) {
 <body class="hold-transition login-page body-bg">
     <div class="login-box">
         <div class="login-logo">
-            <img src="dist/img/logo.png" alt="CSPC" class="brand-image img-circle elevation-10" style="opacity: .8; max-width: 200px;">
+            <img src="dist/img/bcc.jpg" alt="BCC" class="brand-image img-circle elevation-10" style="opacity: .8; max-width: 200px;">
         </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body boxx">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <p class="login-box-msg">Admin Login</p>
 
                 <form method="POST">
                     <div class="input-group mb-3">
@@ -106,7 +105,7 @@ if (isset($_POST["logInSubmit"])) {
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-12">
-                            <a href="admin.php" target="self"><button type="submit" name="logInSubmit" class="btn btn-primary btn-block"> Login</button></a>
+                            <a href="admin_index.php" target="self"><button type="submit" name="logInSubmit" class="btn btn-primary btn-block"> Login</button></a>
                         </div>
                         <!-- /.col -->
                     </div>
